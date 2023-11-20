@@ -29,42 +29,49 @@ function App() {
           <p class="paragraph">Complete online JavaScript course</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">Jog around the park 3x</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">10 minutes meditation</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">Read for 1 hour</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">Pick up groceries</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">Complete Todo App on Frontend Mentor</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="inputBox">
           <img src={check} alt="check image" />
           <p class="paragraph">Complete online JavaScript course</p>
           <img class="crossImg" src={cross} alt="esc img" />
         </div>
+        <hr />
 
         <div class="cleanBox">
           <p class="itemsLeft">5 items left</p>
@@ -168,5 +175,33 @@ const Section = styled.div`
     width: 12px;
     height: 12px;
     display: flex;
+  }
+
+  .cleanBox {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    gap: 138px;
+    margin-top: 16px;
+  }
+
+  .itemsLeft {
+    color: #5b5e7e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .clear {
+    color: #5b5e7e;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  hr {
+    width: 327px;
+    height: 1px;
+    background: #393a4b;
+    border: none;
   }
 `;
