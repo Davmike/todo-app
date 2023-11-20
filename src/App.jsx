@@ -79,15 +79,15 @@ function App() {
         </div>
 
         {/* last div */}
-
-        <div class="lastDiv">
-          <p class="all">All</p>
-          <p class="active">Active</p>
-          <p class="completed">Completed</p>
-        </div>
       </div>
 
-      <p>Drag and drop to reorder list</p>
+      <div class="lastDiv">
+        <p class="all">All</p>
+        <p class="active">Active</p>
+        <p class="completed">Completed</p>
+      </div>
+
+      <p class="lastParagraph">Drag and drop to reorder list</p>
     </Section>
   );
 }
@@ -180,9 +180,8 @@ const Section = styled.div`
   .cleanBox {
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    gap: 138px;
-    margin-top: 16px;
+    padding: 20px;
+    gap: 135px;
   }
 
   .itemsLeft {
@@ -203,5 +202,48 @@ const Section = styled.div`
     height: 1px;
     background: #393a4b;
     border: none;
+  }
+
+  .lastDiv {
+    box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background: #25273d;
+    box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+    width: 327px;
+    height: 48px;
+    /* insede */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 19px;
+  }
+
+  .all {
+    color: #3a7cfd;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .active {
+    color: #5b5e7e;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .completed {
+    color: #5b5e7e;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .lastParagraph {
+    color: #5b5e7e;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 40px;
   }
 `;
