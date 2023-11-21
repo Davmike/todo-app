@@ -16,9 +16,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #171823;
   background-image: url(${backgroundImage});
   background-repeat: no-repeat;
   background-position: 50% 0%;
+}
+
+@media screen and (min-width: 1440px){
+
+
 }
 `;
 export default GlobalStyle;

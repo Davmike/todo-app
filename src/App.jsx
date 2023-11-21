@@ -66,13 +66,6 @@ function App() {
         </div>
         <hr />
 
-        <div class="inputBox">
-          <img src={check} alt="check image" />
-          <p class="paragraph">Complete online JavaScript course</p>
-          <img class="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
         <div class="cleanBox">
           <p class="itemsLeft">5 items left</p>
           <p class="clear">Clear Completed</p>
@@ -132,8 +125,6 @@ const Section = styled.div`
     border: none;
     outline: none;
     color: #767992;
-    font-size: 12px;
-    font-weight: 400;
   }
 
   .header-input::placeholder {
@@ -245,5 +236,67 @@ const Section = styled.div`
     font-size: 14px;
     font-weight: 400;
     margin-top: 40px;
+  }
+
+  /* desktop */
+
+  @media screen and (min-width: 1440px) {
+    .todoImg {
+      width: 167px;
+      height: 40px;
+    }
+
+    .headerInput {
+      width: 540px;
+      height: 64px;
+    }
+
+    .header {
+      gap: 348px;
+    }
+
+    .header-input::placeholder {
+      font-size: 18px;
+    }
+
+    .paragraph {
+      font-size: 18px;
+    }
+
+    .container {
+      width: 540px;
+      height: 439px;
+    }
+
+    .inputBox {
+      width: 540px;
+      height: 64px;
+    }
+
+    hr {
+      width: 540px;
+    }
+
+    .cleanBox {
+      gap: 318px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .inputBox {
+      padding-left: 24px;
+    }
+
+    .itemsLeft,
+    .clear {
+      font-size: 14px;
+    }
+
+    .lastDiv {
+      width: 540px;
+      background: none;
+      box-shadow: none;
+      position: absolute;
+    }
   }
 `;
