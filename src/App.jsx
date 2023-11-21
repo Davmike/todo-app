@@ -3,16 +3,24 @@ import GlobalStyle from "./style-component/GlobalStyle";
 import styled from "styled-components";
 import todo from "../public/assets/todo.svg";
 import sun from "../public/assets/icon-sun.svg";
+import moon from "../public/assets/icon-moon.svg";
 import cross from "../public/assets/icon-cross.svg";
 import check from "../public/assets/circle.svg";
 
 function App() {
+  const [dark, setDark] = useState(true);
+
   return (
     <Section>
       <GlobalStyle />
-      <div class="header">
+      <div
+        class="header"
+        onClick={() => {
+          setDark(!dark);
+        }}
+      >
         <img class="todoImg" src={todo} alt="todo logo" />
-        <img class="sunImg" src={sun} alt="sun image" />
+        <img class="sunImg" src={dark ? sun : moon} alt="sun image" />
       </div>
       <div class="headerInput">
         <img src={check} alt="check image" />
@@ -188,6 +196,11 @@ const Section = styled.div`
     font-weight: 400;
   }
 
+  .clear:hover {
+    color: white;
+    cursor: pointer;
+  }
+
   hr {
     width: 327px;
     height: 1px;
@@ -218,16 +231,31 @@ const Section = styled.div`
     font-weight: 700;
   }
 
+  .all:hover {
+    color: white;
+    cursor: pointer;
+  }
+
   .active {
     color: #5b5e7e;
     font-size: 14px;
     font-weight: 700;
   }
 
+  .active:hover {
+    color: white;
+    cursor: pointer;
+  }
+
   .completed {
     color: #5b5e7e;
     font-size: 14px;
     font-weight: 700;
+  }
+
+  .completed:hover {
+    color: white;
+    cursor: pointer;
   }
 
   .lastParagraph {
@@ -255,8 +283,12 @@ const Section = styled.div`
       gap: 348px;
     }
 
+    .header-input {
+      font-size: 16px;
+    }
+
     .header-input::placeholder {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .paragraph {
@@ -280,7 +312,6 @@ const Section = styled.div`
     .cleanBox {
       gap: 318px;
       padding-left: 24px;
-      position: relative;
     }
 
     .inputBox {
@@ -296,7 +327,6 @@ const Section = styled.div`
       width: 540px;
       background: none;
       box-shadow: none;
-      position: absolute;
     }
   }
 `;
