@@ -11,84 +11,84 @@ function App() {
   const [dark, setDark] = useState(true);
 
   return (
-    <Section>
-      <GlobalStyle />
+    <Section dark={dark}>
+      <GlobalStyle dark={dark} />
       <div
-        class="header"
+        className="header"
         onClick={() => {
           setDark(!dark);
         }}
       >
-        <img class="todoImg" src={todo} alt="todo logo" />
-        <img class="sunImg" src={dark ? sun : moon} alt="sun image" />
+        <img className="todoImg" src={todo} alt="todo logo" />
+        <img className="sunImg" src={dark ? sun : moon} alt="sun image" />
       </div>
-      <div class="headerInput">
+      <div className="headerInput">
         <img src={check} alt="check image" />
         <input
           type="text"
           placeholder="Create a new todo…"
-          class="header-input"
+          className="header-input"
         />
       </div>
 
-      <div class="container">
-        <div class="inputBox">
+      <div className="container">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">Complete online JavaScript course</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">Complete online JavaScript course</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="inputBox">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">Jog around the park 3x</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">Jog around the park 3x</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="inputBox">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">10 minutes meditation</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">10 minutes meditation</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="inputBox">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">Read for 1 hour</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">Read for 1 hour</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="inputBox">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">Pick up groceries</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">Pick up groceries</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="inputBox">
+        <div className="inputBox">
           <img src={check} alt="check image" />
-          <p class="paragraph">Complete Todo App on Frontend Mentor</p>
-          <img class="crossImg" src={cross} alt="esc img" />
+          <p className="paragraph">Complete Todo App on Frontend Mentor</p>
+          <img className="crossImg" src={cross} alt="esc img" />
         </div>
         <hr />
 
-        <div class="cleanBox">
-          <p class="itemsLeft">5 items left</p>
-          <p class="clear">Clear Completed</p>
+        <div className="cleanBox">
+          <p className="itemsLeft">5 items left</p>
+          <p className="clear">Clear Completed</p>
         </div>
 
         {/* last div */}
       </div>
 
-      <div class="lastDiv">
-        <p class="all">All</p>
-        <p class="active">Active</p>
-        <p class="completed">Completed</p>
+      <div className="lastDiv">
+        <p className="all">All</p>
+        <p className="active">Active</p>
+        <p className="completed">Completed</p>
       </div>
 
-      <p class="lastParagraph">Drag and drop to reorder list</p>
+      <p className="lastParagraph">Drag and drop to reorder list</p>
     </Section>
   );
 }
@@ -117,7 +117,7 @@ const Section = styled.div`
   .headerInput {
     margin-top: 40px;
     border-radius: 5px;
-    background: #25273d;
+    background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
     box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     width: 327px;
     height: 48px;
@@ -129,7 +129,7 @@ const Section = styled.div`
   }
 
   .header-input {
-    background: #25273d;
+    background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
     border: none;
     outline: none;
     color: #767992;
@@ -150,8 +150,11 @@ const Section = styled.div`
   .container {
     margin-top: 16px;
     border-radius: 5px;
-    background: #25273d;
-    box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+    background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
+    box-shadow: ${(props) =>
+      props.dark
+        ? " 0px 35px 50px -15px rgba(0, 0, 0, 0.50)"
+        : "0px 35px 50px -15px rgba(194, 195, 214, 0.50)"};
   }
 
   .inputBox {
@@ -165,7 +168,7 @@ const Section = styled.div`
   }
 
   .paragraph {
-    color: #c8cbe7;
+    color: ${(props) => (props.dark ? "#C8CBE7" : "#494C6B")};
     font-size: 12px;
     font-weight: 400;
   }
@@ -173,7 +176,8 @@ const Section = styled.div`
   .crossImg {
     width: 12px;
     height: 12px;
-    display: flex;
+    margin-left: auto;
+    margin-right: 20px;
   }
 
   .cleanBox {
@@ -214,7 +218,7 @@ const Section = styled.div`
     display: flex;
     align-items: center;
     border-radius: 5px;
-    background: #25273d;
+    background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
     box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     width: 327px;
     height: 48px;
@@ -259,7 +263,7 @@ const Section = styled.div`
   }
 
   .lastParagraph {
-    color: #5b5e7e;
+    color: ${(props) => (props.dark ? "#5B5E7E" : "#9495A5")};
     text-align: center;
     font-size: 14px;
     font-weight: 400;
