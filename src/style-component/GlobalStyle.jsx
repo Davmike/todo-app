@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import backgroundImage from "../../public/assets/bg-mobile-dark.jpg";
 import backgroundDesktopImage from "../../public/assets/bg-desktop-dark.jpg";
+import backgroundImageLight from "../../public/assets/bg-mobile-light.jpg";
+import backgroundDesktopImageLight from "../../public/assets/bg-desktop-light.jpg";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
@@ -18,12 +20,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url(${backgroundImage});
+  background-image: ${(props) =>
+    props.dark ? `url(${backgroundImage})` : `url(${backgroundImageLight})`};
   background-repeat: no-repeat;
   background-position: 50% 0%;
   @media screen and (min-width: 1440px){
-    background-image: url(${backgroundDesktopImage});
-
+    background-image: ${(props) =>
+      props.dark
+        ? `url(${backgroundDesktopImage})`
+        : `url(${backgroundDesktopImageLight})`};
 }
 }
 
