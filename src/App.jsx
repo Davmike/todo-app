@@ -208,7 +208,7 @@ const Section = styled.div`
   hr {
     width: 327px;
     height: 1px;
-    background: #393a4b;
+    background-color: ${(props) => (props.dark ? "#393a4b" : "#E3E4F1")};
     border: none;
   }
 
