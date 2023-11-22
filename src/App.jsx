@@ -118,7 +118,10 @@ const Section = styled.div`
     margin-top: 40px;
     border-radius: 5px;
     background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
-    box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+    box-shadow: ${(props) =>
+      props.dark
+        ? "0px 35px 50px -15px rgba(0, 0, 0, 0.5)"
+        : "0px 35px 50px -15px rgba(194, 195, 214, 0.50)"};
     width: 327px;
     height: 48px;
     /* insede */
@@ -132,11 +135,11 @@ const Section = styled.div`
     background-color: ${(props) => (props.dark ? "#25273d" : "#FFF")};
     border: none;
     outline: none;
-    color: #767992;
+    color: ${(props) => (props.dark ? " #767992" : "#393A4B")};
   }
 
   .header-input::placeholder {
-    color: #767992;
+    color: ${(props) => (props.dark ? " #767992" : "#393A4B")};
     font-size: 12px;
     font-weight: 400;
   }
@@ -201,7 +204,7 @@ const Section = styled.div`
   }
 
   .clear:hover {
-    color: white;
+    color: ${(props) => (props.dark ? "white" : "#262835")};
     cursor: pointer;
   }
 
@@ -236,7 +239,7 @@ const Section = styled.div`
   }
 
   .all:hover {
-    color: white;
+    color: ${(props) => (props.dark ? "white" : "#8f9ced")};
     cursor: pointer;
   }
 
@@ -247,7 +250,7 @@ const Section = styled.div`
   }
 
   .active:hover {
-    color: white;
+    color: ${(props) => (props.dark ? "white" : "#262835")};
     cursor: pointer;
   }
 
@@ -258,7 +261,7 @@ const Section = styled.div`
   }
 
   .completed:hover {
-    color: white;
+    color: ${(props) => (props.dark ? "white" : "#262835")};
     cursor: pointer;
   }
 
