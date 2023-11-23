@@ -9,6 +9,15 @@ import check from "../public/assets/circle.svg";
 
 function App() {
   const [dark, setDark] = useState(true);
+  const [inputText, setInputText] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && inputText.trim() !== "") {
+      setTasks([...tasks, inputText.trim()]);
+      setInputText("");
+    }
+  };
 
   return (
     <Section dark={dark}>
@@ -28,60 +37,33 @@ function App() {
           type="text"
           placeholder="Create a new todo…"
           className="header-input"
+          value={inputText}
+          onChange={(event) => setInputText(event.target.value)}
+          onKeyDown={handleKeyPress}
         />
       </div>
 
-      <div className="container">
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">Complete online JavaScript course</p>
-          <img className="crossImg" src={cross} alt="esc img" />
+      {tasks.length > 0 && (
+        <div className="container">
+          {tasks.map((task, index) => (
+            <div key={index}>
+              <div className="inputBox" key={index}>
+                <img src={check} alt="check image" />
+                <p className="paragraph">{task}</p>
+                <img className="crossImg" src={cross} alt="esc img" />
+              </div>
+              <hr key={`hr-${index}`} />
+            </div>
+          ))}
+
+          <div className="cleanBox">
+            <p className="itemsLeft">5 items left</p>
+            <p className="clear">Clear Completed</p>
+          </div>
         </div>
-        <hr />
+      )}
 
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">Jog around the park 3x</p>
-          <img className="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">10 minutes meditation</p>
-          <img className="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">Read for 1 hour</p>
-          <img className="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">Pick up groceries</p>
-          <img className="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
-        <div className="inputBox">
-          <img src={check} alt="check image" />
-          <p className="paragraph">Complete Todo App on Frontend Mentor</p>
-          <img className="crossImg" src={cross} alt="esc img" />
-        </div>
-        <hr />
-
-        <div className="cleanBox">
-          <p className="itemsLeft">5 items left</p>
-          <p className="clear">Clear Completed</p>
-        </div>
-
-        {/* last div */}
-      </div>
-
+      {/* last div */}
       <div className="lastDiv">
         <p className="all">All</p>
         <p className="active">Active</p>
@@ -300,11 +282,6 @@ const Section = styled.div`
 
     .paragraph {
       font-size: 18px;
-    }
-
-    .container {
-      width: 540px;
-      height: 439px;
     }
 
     .inputBox {
