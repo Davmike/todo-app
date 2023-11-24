@@ -1,12 +1,12 @@
 import { useState } from "react";
 import GlobalStyle from "./style-component/GlobalStyle";
 import styled from "styled-components";
-import todo from "../public/assets/todo.svg";
-import sun from "../public/assets/icon-sun.svg";
-import moon from "../public/assets/icon-moon.svg";
-import cross from "../public/assets/icon-cross.svg";
-import check from "../public/assets/circle.svg";
-import checked from "../public/assets/checked.svg";
+import todo from "/assets/todo.svg";
+import sun from "/assets/icon-sun.svg";
+import moon from "/assets/icon-moon.svg";
+import cross from "/assets/icon-cross.svg";
+import check from "/assets/circle.svg";
+import checked from "/assets/checked.svg";
 
 function App() {
   const [dark, setDark] = useState(true);
@@ -20,6 +20,8 @@ function App() {
       setInputText("");
     }
   };
+
+  console.log(tasks);
 
   return (
     <Section dark={dark} image={image}>
@@ -63,16 +65,18 @@ function App() {
                   alt="check image"
                   onClick={() => {
                     const updatedTasks = tasks.map((todo) => {
-                      if (todo.isDone) {
+                      if (todo.name === task.name) {
                         return { ...todo, isDone: !todo.isDone };
                       }
                       return todo;
                     });
 
-                    setTasks([...tasks]);
+                    setTasks(updatedTasks);
                   }}
                 />
-                <TodoParagraph done={task.isDone}>{task.name}</TodoParagraph>
+                <TodoParagraph dark={dark} done={task.isDone}>
+                  {task.name}
+                </TodoParagraph>
                 <img className="crossImg" src={cross} alt="esc img" />
               </div>
               <hr key={`hr-${index}`} />
@@ -339,8 +343,8 @@ const Section = styled.div`
 `;
 
 const TodoParagraph = styled.p`
-  color: ${(props) => (props.dark ? "#C8CBE7" : "#494C6B")};
+  color: ${(props) => (props.dark && props.done ? "#C8CBE7" : "#494C6B")};
   font-size: 12px;
   font-weight: 400;
-  text-decoration: ${(props) => (props.isDone ? "none" : "line-through")};
+  text-decoration: ${(props) => (props.done ? "none" : "line-through")};
 `;
