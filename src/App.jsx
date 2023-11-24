@@ -6,21 +6,23 @@ import sun from "../public/assets/icon-sun.svg";
 import moon from "../public/assets/icon-moon.svg";
 import cross from "../public/assets/icon-cross.svg";
 import check from "../public/assets/circle.svg";
+import checked from "../public/assets/checked.svg";
 
 function App() {
   const [dark, setDark] = useState(true);
   const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [image, setImage] = useState(true);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && inputText.trim() !== "") {
-      setTasks([...tasks, inputText.trim()]);
+      setTasks([...tasks, { name: inputText.trim(), isDone: image }]);
       setInputText("");
     }
   };
 
   return (
-    <Section dark={dark}>
+    <Section dark={dark} image={image}>
       <GlobalStyle dark={dark} />
       <div
         className="header"
@@ -32,7 +34,14 @@ function App() {
         <img className="sunImg" src={dark ? sun : moon} alt="sun image" />
       </div>
       <div className="headerInput">
-        <img src={check} alt="check image" />
+        <img
+          className="checkImage"
+          src={image ? check : checked}
+          alt="check image"
+          onClick={() => {
+            setImage(!image);
+          }}
+        />
         <input
           type="text"
           placeholder="Create a new todo…"
@@ -48,8 +57,22 @@ function App() {
           {tasks.map((task, index) => (
             <div key={index}>
               <div className="inputBox" key={index}>
-                <img src={check} alt="check image" />
-                <p className="paragraph">{task}</p>
+                <img
+                  className="check-image"
+                  src={task.isDone ? check : checked}
+                  alt="check image"
+                  onClick={() => {
+                    const updatedTasks = tasks.map((todo) => {
+                      if (todo.isDone) {
+                        return { ...todo, isDone: !todo.isDone };
+                      }
+                      return todo;
+                    });
+
+                    setTasks([...tasks]);
+                  }}
+                />
+                <TodoParagraph done={task.isDone}>{task.name}</TodoParagraph>
                 <img className="crossImg" src={cross} alt="esc img" />
               </div>
               <hr key={`hr-${index}`} />
@@ -82,6 +105,12 @@ const Section = styled.div`
 
   .todoImg {
     width: 109px;
+    height: 20px;
+  }
+
+  .checkImage,
+  .check-image {
+    width: 20px;
     height: 20px;
   }
 
@@ -150,12 +179,6 @@ const Section = styled.div`
     align-items: center;
     gap: 12px;
     padding-left: 20px;
-  }
-
-  .paragraph {
-    color: ${(props) => (props.dark ? "#C8CBE7" : "#494C6B")};
-    font-size: 12px;
-    font-weight: 400;
   }
 
   .crossImg {
@@ -313,4 +336,11 @@ const Section = styled.div`
       box-shadow: none;
     }
   }
+`;
+
+const TodoParagraph = styled.p`
+  color: ${(props) => (props.dark ? "#C8CBE7" : "#494C6B")};
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: ${(props) => (props.isDone ? "none" : "line-through")};
 `;

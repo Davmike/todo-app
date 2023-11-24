@@ -24,6 +24,7 @@ body {
     props.dark ? `url(${backgroundImage})` : `url(${backgroundImageLight})`};
   background-repeat: no-repeat;
   background-position: 50% 0%;
+  background-size: 100% 300px;
   @media screen and (min-width: 1440px){
     background-image: ${(props) =>
       props.dark
