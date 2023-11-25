@@ -21,7 +21,10 @@ function App() {
     }
   };
 
-  console.log(tasks);
+  const handleButtonClick = () => {
+    let completedTasks = tasks.filter((task) => task.isDone);
+    setTasks(completedTasks);
+  };
 
   return (
     <Section dark={dark} image={image}>
@@ -77,7 +80,18 @@ function App() {
                 <TodoParagraph dark={dark} done={task.isDone}>
                   {task.name}
                 </TodoParagraph>
-                <img className="crossImg" src={cross} alt="esc img" />
+                <img
+                  className="crossImg"
+                  src={cross}
+                  alt="esc img"
+                  onClick={() => {
+                    const updatedTasks = tasks.filter(
+                      (todo) =>
+                        todo.name.toLowerCase() !== task.name.toLowerCase()
+                    );
+                    setTasks(updatedTasks);
+                  }}
+                />
               </div>
               <hr key={`hr-${index}`} />
             </div>
@@ -85,7 +99,9 @@ function App() {
 
           <div className="cleanBox">
             <p className="itemsLeft">5 items left</p>
-            <p className="clear">Clear Completed</p>
+            <p className="clear" onClick={handleButtonClick}>
+              Clear Completed
+            </p>
           </div>
         </div>
       )}
