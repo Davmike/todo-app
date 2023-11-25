@@ -63,11 +63,11 @@ function App() {
           {tasks
             .filter((task) => {
               if (filter === 1) {
-                return true; // Show all tasks
+                return true;
               } else if (filter === 2) {
-                return !task.isDone; // Show only active tasks
+                return !task.isDone;
               } else if (filter === 3) {
-                return task.isDone; // Show only completed tasks
+                return task.isDone;
               }
               return false;
             })
@@ -110,7 +110,9 @@ function App() {
             ))}
 
           <div className="cleanBox">
-            <p className="itemsLeft">5 items left</p>
+            <p className="itemsLeft">
+              {tasks.filter((task) => task.isDone).length} items left
+            </p>
             <p className="clear" onClick={handleButtonClick}>
               Clear Completed
             </p>
@@ -190,6 +192,7 @@ const Section = styled.div`
     align-items: center;
     gap: 12px;
     padding-left: 20px;
+    transition: background-color 1s ease-in-out, box-shadow 1s ease-in-out;
   }
 
   .header-input {
@@ -197,6 +200,7 @@ const Section = styled.div`
     border: none;
     outline: none;
     color: ${(props) => (props.dark ? " #767992" : "#393A4B")};
+    transition: background-color 1s ease-in-out;
   }
 
   .header-input::placeholder {
@@ -219,6 +223,7 @@ const Section = styled.div`
       props.dark
         ? " 0px 35px 50px -15px rgba(0, 0, 0, 0.50)"
         : "0px 35px 50px -15px rgba(194, 195, 214, 0.50)"};
+    transition: background-color 1s ease-in-out, box-shadow 1s ease-in-out;
   }
 
   .inputBox {
@@ -268,9 +273,11 @@ const Section = styled.div`
     height: 1px;
     background-color: ${(props) => (props.dark ? "#393a4b" : "#E3E4F1")};
     border: none;
+    transition: background-color 1s ease-in-out;
   }
 
   .lastDiv {
+    transition: background-color 1s ease-in-out, box-shadow 1s ease-in-out;
     box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     margin-top: 16px;
     display: flex;
@@ -326,6 +333,7 @@ const Section = styled.div`
     font-size: 14px;
     font-weight: 400;
     margin-top: 40px;
+    transition: background-color 1s ease-in-out;
   }
 
   /* desktop */
@@ -393,4 +401,5 @@ const TodoParagraph = styled.p`
   font-size: 12px;
   font-weight: 400;
   text-decoration: ${(props) => (props.done ? "none" : "line-through")};
+  transition: background-color 1s ease-in-out;
 `;

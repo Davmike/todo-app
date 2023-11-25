@@ -14,6 +14,7 @@ padding: 0;
 }
 
 body {
+  transition: background-color 1s ease-in-out, background-image 1s ease-in-out;;
   background-color: ${(props) => (props.dark ? "#171823" : "#FAFAFA")};
   font-family: 'Josefin Sans', sans-serif;
   display: flex;
