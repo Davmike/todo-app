@@ -13,6 +13,7 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
   const [image, setImage] = useState(true);
+  const [filter, setFilter] = useState(1);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && inputText.trim() !== "") {
@@ -59,43 +60,54 @@ function App() {
 
       {tasks.length > 0 && (
         <div className="container">
-          {tasks.map((task, index) => (
-            <div key={index}>
-              <div className="inputBox" key={index}>
-                <img
-                  className="check-image"
-                  src={task.isDone ? check : checked}
-                  alt="check image"
-                  onClick={() => {
-                    const updatedTasks = tasks.map((todo) => {
-                      if (todo.name === task.name) {
-                        return { ...todo, isDone: !todo.isDone };
-                      }
-                      return todo;
-                    });
+          {tasks
+            .filter((task) => {
+              if (filter === 1) {
+                return true; // Show all tasks
+              } else if (filter === 2) {
+                return !task.isDone; // Show only active tasks
+              } else if (filter === 3) {
+                return task.isDone; // Show only completed tasks
+              }
+              return false;
+            })
+            .map((task, index) => (
+              <div key={index}>
+                <div className="inputBox" key={index}>
+                  <img
+                    className="check-image"
+                    src={task.isDone ? check : checked}
+                    alt="check image"
+                    onClick={() => {
+                      const updatedTasks = tasks.map((todo) => {
+                        if (todo.name === task.name) {
+                          return { ...todo, isDone: !todo.isDone };
+                        }
+                        return todo;
+                      });
 
-                    setTasks(updatedTasks);
-                  }}
-                />
-                <TodoParagraph dark={dark} done={task.isDone}>
-                  {task.name}
-                </TodoParagraph>
-                <img
-                  className="crossImg"
-                  src={cross}
-                  alt="esc img"
-                  onClick={() => {
-                    const updatedTasks = tasks.filter(
-                      (todo) =>
-                        todo.name.toLowerCase() !== task.name.toLowerCase()
-                    );
-                    setTasks(updatedTasks);
-                  }}
-                />
+                      setTasks(updatedTasks);
+                    }}
+                  />
+                  <TodoParagraph dark={dark} done={task.isDone}>
+                    {task.name}
+                  </TodoParagraph>
+                  <img
+                    className="crossImg"
+                    src={cross}
+                    alt="esc img"
+                    onClick={() => {
+                      const updatedTasks = tasks.filter(
+                        (todo) =>
+                          todo.name.toLowerCase() !== task.name.toLowerCase()
+                      );
+                      setTasks(updatedTasks);
+                    }}
+                  />
+                </div>
+                <hr key={`hr-${index}`} />
               </div>
-              <hr key={`hr-${index}`} />
-            </div>
-          ))}
+            ))}
 
           <div className="cleanBox">
             <p className="itemsLeft">5 items left</p>
@@ -108,9 +120,27 @@ function App() {
 
       {/* last div */}
       <div className="lastDiv">
-        <p className="all">All</p>
-        <p className="active">Active</p>
-        <p className="completed">Completed</p>
+        <p
+          className="all"
+          onClick={() => setFilter(1)}
+          style={{ cursor: "pointer" }}
+        >
+          All
+        </p>
+        <p
+          className="active"
+          onClick={() => setFilter(3)}
+          style={{ cursor: "pointer" }}
+        >
+          Active
+        </p>
+        <p
+          className="completed"
+          onClick={() => setFilter(2)}
+          style={{ cursor: "pointer" }}
+        >
+          Completed
+        </p>
       </div>
 
       <p className="lastParagraph">Drag and drop to reorder list</p>
